@@ -1,0 +1,26 @@
+{
+  "name": "animated-svg",
+  "version": "1.0.0",
+  "description": "Animated SVG for login page",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "http-server -o"
+  },
+  "keywords": [
+    "SVG"
+  ],
+  "author": "Eduardo Tanaka",
+  "license": "MIT",
+  "dependencies": {
+    "animate.css": "^3.6.1",
+    "animejs": "^2.2.0",
+    "bootstrap": "^3.3.7",
+    "font-awesome": "^4.7.0",
+    "gsap": "^1.20.4",
+    "http-server": "^0.11.1",
+    "jquery": "^3.3.1",
+    "jquery-form-validator": "^2.3.77",
+    "toastr": "^2.1.4"
+  }
+}
