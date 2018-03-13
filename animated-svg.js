@@ -112,12 +112,41 @@ function getCoord() {
 function onEmailInput(e) {
 	getCoord();
 	var duration = 1000;
+	KUTE.defaultOptions.duration = 150;
 	var value = e.target.value;
 	var curEmailIndex = value.length;
 	// very crude email validation for now to trigger effects
-	if(curEmailIndex > 0) {
+	if(curEmailIndex > 0 && mouthStatus == "small") {
 		mouthStatus = "medium";
-		anime({ targets: [mouthBG, mouthOutline, mouthMaskPath], d: mouthMediumBG.getAttribute('d'), easing: 'easeOutExpo' });
+		KUTE.to(mouthBG, { path: mouthMediumBG.getAttribute('d') }).start();
+		KUTE.to(mouthOutline, { path: mouthMediumBG.getAttribute('d') }).start();
+		KUTE.to(mouthMaskPath, { path: mouthMediumBG.getAttribute('d') }).start();
+		//anime({ targets: [mouthBG, mouthOutline, mouthMaskPath], d: mouthMediumBG.getAttribute('d'), easing: 'easeOutExpo' });
+		anime({ targets: tooth, duration: duration, translateX: 0, translateY: 0, easing: 'easeOutExpo' });
+		anime({ targets: tongue, duration: duration, translateX: 0, translateY: 1, easing: 'easeOutExpo' });
+	} else if(curEmailIndex > 0 && mouthStatus == "medium" && value.includes("@")) {
+		mouthStatus = "large";
+		//var tween2 = KUTE.fromTo('selector1',{skewY:0},{skewY:45}).start();
+		KUTE.to(mouthBG, { path: mouthLargeBG.getAttribute('d') }).start();
+		KUTE.to(mouthOutline, { path: mouthLargeBG.getAttribute('d') }).start();
+		KUTE.to(mouthMaskPath, { path: mouthLargeBG.getAttribute('d') }).start();
+		//anime({ targets: [mouthBG, mouthOutline, mouthMaskPath], d: mouthMediumBG.getAttribute('d'), easing: 'easeOutExpo' });
+		anime({ targets: tooth, duration: duration, translateX: 0, translateY: 0, easing: 'easeOutExpo' });
+		anime({ targets: tongue, duration: duration, translateX: 0, translateY: 1, easing: 'easeOutExpo' });
+	} else if(curEmailIndex === 0) {
+		mouthStatus = "small";
+		KUTE.to(mouthBG, { path: mouthSmallBG.getAttribute('d') }).start();
+		KUTE.to(mouthOutline, { path: mouthSmallBG.getAttribute('d') }).start();
+		KUTE.to(mouthMaskPath, { path: mouthSmallBG.getAttribute('d') }).start();
+		//anime({ targets: [mouthBG, mouthOutline, mouthMaskPath], d: mouthMediumBG.getAttribute('d'), easing: 'easeOutExpo' });
+		anime({ targets: tooth, duration: duration, translateX: 0, translateY: 0, easing: 'easeOutExpo' });
+		anime({ targets: tongue, duration: duration, translateX: 0, translateY: 1, easing: 'easeOutExpo' });
+	} else if(curEmailIndex > 0 && mouthStatus == "large" && !value.includes("@")) {
+		mouthStatus = "medium";
+		KUTE.to(mouthBG, { path: mouthMediumBG.getAttribute('d') }).start();
+		KUTE.to(mouthOutline, { path: mouthMediumBG.getAttribute('d') }).start();
+		KUTE.to(mouthMaskPath, { path: mouthMediumBG.getAttribute('d') }).start();
+		//anime({ targets: [mouthBG, mouthOutline, mouthMaskPath], d: mouthMediumBG.getAttribute('d'), easing: 'easeOutExpo' });
 		anime({ targets: tooth, duration: duration, translateX: 0, translateY: 0, easing: 'easeOutExpo' });
 		anime({ targets: tongue, duration: duration, translateX: 0, translateY: 1, easing: 'easeOutExpo' });
 	} 
